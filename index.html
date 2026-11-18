@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#00363B">
+<title>Jantar do Síndico 2026 · Encontre sua mesa</title>
+<link rel="icon" href="logo.png">
+<style>
+:root{--teal:#009590;--escuro:#00363B;--lima:#BCCD00;--fundo:#F4F7F6;--card:#fff;--texto:#00363B;--suave:#5b7476;--borda:#dbe5e4}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--fundo);color:var(--texto);-webkit-text-size-adjust:100%}
+header{background:var(--escuro);color:#fff;padding:20px 16px 56px;text-align:center}
+header img{width:120px;height:auto;background:#fff;border-radius:14px;padding:8px}
+h1{margin:12px 0 4px;font-size:1.5rem}
+header p{margin:0;opacity:.85}
+main{max-width:560px;margin:-36px auto 32px;padding:0 16px}
+.busca{position:sticky;top:8px;z-index:2}
+input{width:100%;font-size:1.15rem;padding:16px 18px;border:2px solid var(--teal);border-radius:14px;background:#fff;color:var(--texto);box-shadow:0 6px 18px rgba(0,54,59,.15);outline:none}
+input:focus{border-color:var(--lima)}
+#info{color:var(--suave);font-size:.95rem;margin:14px 4px}
+.card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--borda);border-radius:14px;padding:14px;margin-bottom:10px}
+.mesa{flex:0 0 76px;height:76px;border-radius:12px;background:var(--teal);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.mesa small{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.mesa b{font-size:2.1rem;margin-top:4px}
+.nome{font-weight:700;font-size:1.1rem}
+.cond{color:var(--suave);margin-top:2px}
+.acomp{margin-top:4px;font-size:.92rem}
+.acomp::before{content:"+ ";color:var(--teal);font-weight:700}
+mark{background:var(--lima);color:var(--escuro);border-radius:3px;padding:0 1px}
+footer{text-align:center;color:var(--suave);font-size:.8rem;padding:0 16px 24px}
+</style>
+</head>
+<body>
+<header>
+  <img src="logo.png" alt="Atuação Garantidora">
+  <h1>Jantar do Síndico 2026</h1>
+  <p>Digite seu nome ou o nome do condomínio</p>
+</header>
+<main>
+  <div class="busca"><input id="q" type="search" placeholder="Ex.: Maria ou Paineiras" autocomplete="off" autofocus aria-label="Buscar por nome ou condomínio"></div>
+  <p id="info" aria-live="polite"></p>
+  <div id="lista"></div>
+</main>
+<footer>Atuação Garantidora · Bom jantar!</footer>
+<script>
+const DADOS = [{"m": 1, "n": "Evelise", "c": "Atuação", "a": ""}, {"m": 1, "n": "Dayane", "c": "Atuação", "a": ""}, {"m": 1, "n": "Malaguty", "c": "Atuação", "a": ""}, {"m": 1, "n": "Daniele", "c": "Tesserve", "a": ""}, {"m": 1, "n": "Rossana", "c": "Tesserve", "a": ""}, {"m": 1, "n": "Jaqueline", "c": "Tesserve", "a": ""}, {"m": 1, "n": "Sivanei", "c": "Tesserve", "a": ""}, {"m": 1, "n": "Juliana", "c": "Tesserve", "a": ""}, {"m": 2, "n": "Mariza Gatti", "c": "Nogueira - Arruda", "a": "Cristian Rufino"}, {"m": 2, "n": "Leandro", "c": "Nogueira", "a": "2 acompanhantes"}, {"m": 2, "n": "Milene", "c": "Cannes", "a": ""}, {"m": 2, "n": "Mariana", "c": "Cannes", "a": "Paula"}, {"m": 3, "n": "Gelson Fernando Massuqueto Júnior", "c": "Parceiro", "a": "Rafaeli Massuqueto"}, {"m": 3, "n": "Avner", "c": "Parceiro", "a": "Samuel"}, {"m": 3, "n": "Carla", "c": "Parceira", "a": "Filha"}, {"m": 3, "n": "Sebastião Demenciano", "c": "Asami Assessoria", "a": "Wesley Asami Demenciano"}, {"m": 4, "n": "Bianca Ruggi", "c": "Lattes", "a": "Reginaldo"}, {"m": 4, "n": "Maurilei", "c": "Waldemar", "a": "Nilzete"}, {"m": 4, "n": "Luciana", "c": "Vila Romana", "a": "Esposo"}, {"m": 4, "n": "Silmara Ciola Medeiros", "c": "Victorian Park", "a": ""}, {"m": 5, "n": "Eduardo Ruggi", "c": "Alicante", "a": "Esposa"}, {"m": 5, "n": "Laura Ruggi", "c": "Aripuanã", "a": "Mãe"}, {"m": 5, "n": "Marco Antonio", "c": "Cond. Posiville I", "a": "3 acompanhantes"}, {"m": 6, "n": "Clebson Luiz Veber", "c": "Condomínio Campestre", "a": "Prila Leliza Calado"}, {"m": 6, "n": "Mayara", "c": "ADM. Converge", "a": "Kellen"}, {"m": 6, "n": "Joel", "c": "Caixa", "a": "Esposa"}, {"m": 6, "n": "Sabino Sanches de Vargas", "c": "Condominio Bourdin", "a": "Sônia Maria Arnoni Vargas"}, {"m": 7, "n": "Ingrid", "c": "Batel Executive Center", "a": "1 acompanhante"}, {"m": 7, "n": "Sérgio", "c": "Batel Executive", "a": "1 acompanhante"}, {"m": 7, "n": "Ângela", "c": "Nalc", "a": "Vanessa"}, {"m": 7, "n": "Maria Letícia Spengler", "c": "Cristal de Gallé", "a": "Lenir de Souza"}, {"m": 8, "n": "Suzieny", "c": "Condomínio Paineiras", "a": ""}, {"m": 8, "n": "Roberto (subsíndico)", "c": "Condomínio Paineiras", "a": "Fabiane"}, {"m": 8, "n": "Laís Krueger", "c": "Henry Ford", "a": "2 acompanhantes"}, {"m": 8, "n": "Franciele Meneses", "c": "Condomínio J Pedroso", "a": "Jonatas Meneses"}, {"m": 9, "n": "Andrea", "c": "Curso Síndico Diamante", "a": "Sérgio Moura"}, {"m": 9, "n": "Douglas", "c": "Curso Síndico Diamante", "a": "Raphaela e filha"}, {"m": 9, "n": "Carlos", "c": "Curso Síndico Diamante", "a": "Esposa"}, {"m": 9, "n": "Adri", "c": "Alcatraz", "a": ""}, {"m": 10, "n": "Ana Marise", "c": "New Orleans", "a": "1 acompanhante"}, {"m": 10, "n": "Alessandra Baptista da Cunha", "c": "ADM. Holdcon", "a": "Juarez Batista Trindade"}, {"m": 10, "n": "Carmen", "c": "Curso Síndico Diamante", "a": "Cleomar Pedrobom"}, {"m": 10, "n": "Luciana Lemes Mendes Sobrinho", "c": "Síndico Diamante", "a": "Maria Eduarda"}, {"m": 11, "n": "Rafael Endler", "c": "Cond. Edif. Lago Juruhá", "a": "Priscila Endler"}, {"m": 11, "n": "Franciele Grauso", "c": "Morada Bella", "a": "Jaime Grauso"}, {"m": 11, "n": "Ana Cristina", "c": "Spazio Colônia", "a": "Paulo"}, {"m": 11, "n": "Manoel", "c": "Cond. Saint Laurent", "a": "Esposa"}, {"m": 12, "n": "Willyans Ida de Oliveira", "c": "Campanário", "a": "Esposa e Filha"}, {"m": 12, "n": "Marcos", "c": "Lif", "a": "Wendel e Cleverson"}, {"m": 12, "n": "Célia Balemberg", "c": "RCIC III", "a": "Acompanhante"}, {"m": 13, "n": "Magda", "c": "Mirante do Paraíso", "a": "2 acompanhantes"}, {"m": 13, "n": "Eliza", "c": "Bonsai", "a": "1 acompanhante"}, {"m": 13, "n": "Jessika Muniz", "c": "Parque Continental", "a": "1 acompanhante"}, {"m": 13, "n": "Monica Kleuser", "c": "Papa João XXIII", "a": ""}, {"m": 14, "n": "Hugo Vinicius Veronez Savio", "c": "Condominio Veredas", "a": "Camila Turesso Veronez"}, {"m": 14, "n": "Wagner Reva", "c": "Residencial Tanguá A", "a": "Andrea Reva"}, {"m": 14, "n": "Ana Caroline Tanello Brante", "c": "Edifício Savoia", "a": "Guilherme Brante de Freitas Tanello"}, {"m": 14, "n": "Eliza Rivera de Campos", "c": "Residencial Carinhoso", "a": "Jessica Rivera de Melo"}, {"m": 15, "n": "Gabriel Cancela Pires", "c": "Guatambu", "a": "Guilherme Marcelo dos Passos"}, {"m": 15, "n": "José Domingues", "c": "San German", "a": "Alda"}, {"m": 15, "n": "Junior", "c": "Cond. Palmas", "a": "Esposa"}, {"m": 15, "n": "Kethelin", "c": "Cond. Studio Sol", "a": "Acompanhante"}, {"m": 16, "n": "Ana Paula Cruciol Pinto", "c": "Condomínio Houston Club House", "a": "Mariana Cruciol Pinto"}, {"m": 16, "n": "Aurora", "c": "Anavilhenas", "a": "Leonardo"}, {"m": 16, "n": "Welington Manuel dos Santos", "c": "Ucayali", "a": "Ana Alzira Romaniv dos Santos"}, {"m": 16, "n": "Cleidete Trizotto", "c": "Edifical Imóveis Ltda", "a": "Zilberto Martins"}, {"m": 17, "n": "Yagho", "c": "Cond. Pitangueiras", "a": "Claudia"}, {"m": 17, "n": "Janaina Machado Fernandes Barbosa", "c": "Residencial D’Angelis IX", "a": "Danilo Barbosa"}, {"m": 17, "n": "Kellen Tiburski", "c": "Santo Antônio", "a": "Mayara Lucilhia"}, {"m": 17, "n": "Silvia Poit", "c": "Las Palmas", "a": "Evelin Pires"}, {"m": 18, "n": "Maria Carolina Tomadon Valentim", "c": "São Rafael", "a": "Lúcio Alberto Valentim Junior"}, {"m": 18, "n": "Anna Luisa V Ferreira", "c": "Visconde de Cairu", "a": "Marcos Salvadori"}, {"m": 18, "n": "Keila", "c": "Calendola", "a": "1 acompanhante"}, {"m": 18, "n": "Isabella Simões", "c": "Sorbonne", "a": "Marina Luisa"}, {"m": 19, "n": "Érita", "c": "Cond. Lisboa", "a": "1 acompanhante"}, {"m": 19, "n": "Renata Stelzner Brozoski", "c": "João Bonat", "a": "Danilo Santos da Silva"}, {"m": 19, "n": "Paulo Ferreira dos Santos", "c": "Torre Ferrara", "a": "Silmara Santos"}, {"m": 19, "n": "Denilson Neves", "c": "Diversos", "a": "Aline Soares"}, {"m": 20, "n": "Eliane Wojdela", "c": "ADC Administradora", "a": "Lucio Komar"}, {"m": 20, "n": "Kelly", "c": "Cond. Champagnat Regence", "a": "1 acompanhante"}, {"m": 20, "n": "Katia", "c": "Belmont", "a": "1 acompanhante"}, {"m": 20, "n": "Anna", "c": "Jardim das Araucárias", "a": "1 acompanhante"}, {"m": 21, "n": "Kleber", "c": "Nova Itália II", "a": "1 acompanhante"}, {"m": 21, "n": "Bruno Gustavo Martins", "c": "Confiança", "a": "Lays Fernanda Tamarozi"}, {"m": 21, "n": "Creibe", "c": "Antonina", "a": "1 acompanhante"}, {"m": 21, "n": "Ivan", "c": "Verona", "a": "1 acompanhante"}, {"m": 22, "n": "Cassio", "c": "Cond. Buganville", "a": "Simone"}, {"m": 22, "n": "Carolina David", "c": "Spazio Catena", "a": "Sidney Probst Júnior"}, {"m": 22, "n": "Luciane", "c": "Cond. Thereza", "a": "Claudio"}, {"m": 22, "n": "Fernanda", "c": "Cond. Cabral", "a": "Carolina"}, {"m": 23, "n": "Maria", "c": "Cond. Ilha Bela", "a": "1 acompanhante"}, {"m": 23, "n": "Wagner", "c": "Saint Hiliare", "a": "Amanda"}, {"m": 23, "n": "Everlei", "c": "Síndica Prof.", "a": "Marcelo"}, {"m": 23, "n": "Sérgio", "c": "Cond. Phillipe Starck", "a": "Rosane"}];
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+DADOS.forEach(d => d.k = norm(d.n + " " + d.c + " " + d.a));
+const $q = document.getElementById("q"), $l = document.getElementById("lista"), $i = document.getElementById("info");
+
+function realca(texto, termos) {
+  // devolve um fragmento com os trechos buscados marcados (sem innerHTML)
+  const frag = document.createDocumentFragment(), n = norm(texto);
+  const marcas = new Array(texto.length).fill(false);
+  termos.forEach(t => { let p = n.indexOf(t); while (t && p >= 0) { for (let j = p; j < p + t.length; j++) marcas[j] = true; p = n.indexOf(t, p + 1); } });
+  let i = 0;
+  while (i < texto.length) {
+    let j = i; while (j < texto.length && marcas[j] === marcas[i]) j++;
+    const pedaco = texto.slice(i, j);
+    if (marcas[i]) { const m = document.createElement("mark"); m.textContent = pedaco; frag.append(m); } else frag.append(pedaco);
+    i = j;
+  }
+  return frag;
+}
+
+function el(tag, cls, filho) { const e = document.createElement(tag); if (cls) e.className = cls; if (filho) e.append(filho); return e; }
+
+function render() {
+  const termos = norm($q.value).trim().split(/\s+/).filter(Boolean);
+  $l.replaceChildren();
+  if (!termos.length) { $i.textContent = `${DADOS.length} convidados cadastrados. Comece a digitar.`; return; }
+  const achados = DADOS.filter(d => termos.every(t => d.k.includes(t))).sort((a, b) => a.m - b.m || a.n.localeCompare(b.n));
+  $i.textContent = achados.length ? `${achados.length} resultado${achados.length > 1 ? "s" : ""}` : "Nenhum resultado. Tente só o primeiro nome ou parte do condomínio. Se não encontrar, procure a recepção.";
+  achados.forEach(d => {
+    const mesa = el("div", "mesa"); mesa.append(el("small", "", "Mesa"), el("b", "", String(d.m)));
+    const txt = el("div"); txt.append(el("div", "nome", realca(d.n, termos)), el("div", "cond", realca(d.c, termos)));
+    if (d.a) txt.append(el("div", "acomp", realca(d.a, termos)));
+    const card = el("div", "card"); card.append(mesa, txt); $l.append(card);
+  });
+}
+$q.addEventListener("input", render);
+const p = new URLSearchParams(location.search).get("q"); if (p) $q.value = p;
+render();
+</script>
+</body>
+</html>
